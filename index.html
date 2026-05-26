@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appendix · An Agentic AI Fidelity Evaluation Framework for Real-World Evidence Workflows</title>
+<meta name="description" content="Poster appendix: the HARPER Methodology MCP server and a plain-language summary of the study.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-deep:#143c3a;--teal:#2e7d7b;--teal-bright:#3a9d99;--teal-soft:#9cc4c0;
+    --paper:#f7f4ed;--paper-2:#fbf9f4;--ink:#172825;--muted:#5b6b68;--line:#e2ddd2;
+    --shadow:18px 18px 48px rgba(20,60,58,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Public Sans",system-ui,sans-serif;background:var(--paper);
+    color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(20,60,58,.025) 1px,transparent 1px);background-size:4px 4px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* ---------- header / banner ---------- */
+  header{background:var(--teal-deep);padding:18px 0;border-bottom:3px solid var(--teal-bright)}
+  .banner-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .lockup{display:flex;align-items:center;gap:16px}
+  .wm-main{font-family:"Cinzel",serif;font-weight:600;color:#fff;font-size:1.5rem;letter-spacing:.13em;line-height:1.15}
+  .wm-sub{font-family:"Cinzel",serif;font-weight:400;color:var(--teal-soft);font-size:.92rem;letter-spacing:.3em;margin-top:3px}
+  .dia-line{color:#c4dad7;font-size:.76rem;line-height:1.5;text-align:right;max-width:30ch;letter-spacing:.01em}
+  .dia-line .sep{color:#5f8b88}
+
+  /* ---------- hero ---------- */
+  .hero{padding:58px 0 38px}
+  .eyebrow{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:18px}
+  h1{font-family:"Spectral",Georgia,serif;font-weight:600;font-size:clamp(1.9rem,4.8vw,2.85rem);
+    line-height:1.12;letter-spacing:-.01em;margin-bottom:16px}
+  .byline{font-weight:600;font-size:1rem;color:var(--ink);padding-left:16px;
+    border-left:2px solid var(--teal-bright);margin-bottom:26px}
+  .lede{font-family:"Spectral",serif;font-size:clamp(1.02rem,2.3vw,1.22rem);font-style:italic;
+    color:var(--muted);max-width:64ch;text-wrap:balance}
+
+  /* ---------- cards ---------- */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:18px 0 64px}
+  .card{background:var(--paper-2);border:1px solid var(--line);border-radius:4px;padding:34px 30px 30px;
+    display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:22px 26px 60px rgba(20,60,58,.14)}
+  .badge{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--teal);margin-bottom:14px}
+  .card h2{font-family:"Spectral",serif;font-weight:600;font-size:1.42rem;line-height:1.18;margin-bottom:12px}
+  .card p{color:var(--muted);font-size:.95rem;margin-bottom:26px;flex:1}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--teal-deep);
+    color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;padding:14px 20px;border-radius:3px;
+    transition:background .2s ease;width:100%}
+  .btn:hover{background:var(--teal)}
+  .btn svg{width:17px;height:17px}
+  .source{display:block;margin-top:14px;text-align:center;font-size:.84rem;color:var(--muted);
+    text-decoration:none;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+  .source:hover{color:var(--teal)}
+  .source span{font-variant:all-small-caps;letter-spacing:.04em;font-weight:600}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted);font-size:.85rem}
+  .foot-grid{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;text-align:center}
+  footer a{color:var(--teal);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .foot-grid .dot{color:var(--line)}
+
+  .fade{opacity:0;transform:translateY(14px);animation:rise .7s ease forwards}
+  .fade.d1{animation-delay:.05s}.fade.d2{animation-delay:.15s}.fade.d3{animation-delay:.28s}.fade.d4{animation-delay:.40s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.fade{animation:none;opacity:1;transform:none}}
+
+  @media(max-width:680px){
+    .wrap{padding:0 18px}
+    .cards{grid-template-columns:1fr;gap:18px}
+    .hero{padding:44px 0 26px}
+    .card{padding:28px 24px 26px}.wm-main{font-size:1.28rem}
+    h1{font-size:1.58rem;line-height:1.18}
+    .ttl-break{display:none}
+    .byline{font-size:.9rem;padding-left:13px}
+    .lede{font-size:1.02rem}
+    .dia-line{text-align:left;max-width:100%;font-size:.72rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap banner-inner">
+    <div class="lockup">
+      <div>
+        <div class="wm-main">BLACK SWAN</div>
+        <div class="wm-sub">CAUSAL LABS</div>
+      </div>
+    </div>
+    <div class="dia-line">
+      DIA 2026 Global Annual Meeting <span class="sep">·</span> June 14&ndash;18, 2026
+      <span class="sep">·</span> Philadelphia, PA <span class="sep">·</span> Abstract ID 116148
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow fade d1">Appendix</div>
+    <h1 class="fade d2">An Agentic AI Fidelity Evaluation Framework<br class="ttl-break">for Real-World Evidence Workflows</h1>
+    <div class="byline fade d2">John Diaz-Decaro, PhD, MS — Black Swan Causal Labs, LLC, Los Angeles, CA</div>
+    <p class="lede fade d3">This page accompanies the poster as an appendix — the HARPER Methodology
+       MCP server, and a plain-language summary of the study.</p>
+  </section>
+
+  <section class="cards">
+    <!-- ============ CARD 1: HARPER MCP METHODOLOGY (Word -> PDF) ============ -->
+    <article class="card fade d3">
+      <div class="badge">Methodology · PDF</div>
+      <h2>Methodology of the HARPER MCP Server</h2>
+      <p>A focused overview of the server — its purpose, tools, and validation approach.
+         This is not a complete technical write-up, but enough to convey how it authors
+         and checks HARPER protocols.</p>
+      <!-- expects assets/methodology.pdf -->
+      <a class="btn" href="assets/methodology.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        View document
+      </a>
+    </article>
+
+    <!-- ============ CARD 2: PLAIN-LANGUAGE SUMMARY OF THE POSTER (PPT -> PDF) ============ -->
+    <article class="card fade d4">
+      <div class="badge">Poster Summary · PDF</div>
+      <h2>Plain-Language Summary</h2>
+      <p>A non-technical summary of the full poster — what the study set out to test,
+         how it was tested, and what it found — written for a general audience.</p>
+      <!-- expects assets/summary.pdf -->
+      <a class="btn" href="assets/summary.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        View summary
+      </a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <span>© 2026 Black Swan Causal Labs, LLC</span>
+    <span class="dot">·</span>
+    <a href="https://blackswancausallabs.com">blackswancausallabs.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
